@@ -24,7 +24,7 @@ int main(void) {
 
     for (int i = 0; i < NUM_ROWS; i++) { // initializes all characters in A (Available)
         for (int j = 0; j < NUM_COLS; j++) {
-            *(*(arr+i) + j) = 'A';
+            arr[i][j] = 'A';
         }
     }
 
@@ -99,7 +99,7 @@ void available_seats(char **arr, int rows, int cols)
     for (int i = 0; i < rows; i++) {
         printf("Row #%d:  ", i);
         for (int k = 0; k < cols; k++) {
-            printf("%c  ", *(*(arr+i) + k));
+            printf("%c  ", arr[i][k]);
         }
         printf("\n");
     }
@@ -117,8 +117,8 @@ void reserve_seat(char **arr, int rows, int cols)
     scanf("%d", &c);
 
     if (r >= 0 && r < rows && c >= 0 && c < cols) {
-        if (*(*(arr+r) + c) == 'A') {
-            *(*(arr+r) + c) = 'R';
+        if (arr[r][c] == 'A') {
+            arr[r][c] = 'R';
             printf("\nSeat at row #%d, column #%d has been reserved.\n\n", r, c);
         } else {
              printf("Sorry. The seat is already reserved.\n");
@@ -140,8 +140,8 @@ void cancel_reserve(char **arr, int rows, int cols)
 
 
     if (r >= 0 && r < rows && c >= 0 && c < cols) {
-        if (*(*(arr+r) + c) == 'R') {
-            *(*(arr+r) + c) = 'A';
+        if (arr[r][c] == 'R') {
+            arr[r][c] = 'A';
             printf("\nReservation at row #%d, column #%d has been cancelled.\n\n", r, c);
         } else {
             printf("Sorry. The seat is already available.\n");
